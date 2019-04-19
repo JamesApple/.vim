@@ -1,3 +1,7 @@
+if exists('b:did_ftplugin')
+  finish
+endif
+
 nnoremap <buffer> gd <Plug>(rust-def)
 nnoremap <buffer> gs <Plug>(rust-def-split)
 nnoremap <buffer> gx <Plug>(rust-def-vertical)
