@@ -1,3 +1,10 @@
+if exists(':tnoremap')
+  tnoremap   <ESC>      <C-\><C-n>
+endif
+
+inoremap jj <ESC>
+xnoremap r <C-v>
+
 " Replace within block
 nnoremap <leader>r :'{,'}Subvert/<c-r><c-w>//g<left><left>
 xnoremap <leader>r y:'{,'}Subvert/<c-r><c-0>//g<left><left>

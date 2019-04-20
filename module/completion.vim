@@ -1,6 +1,6 @@
+" https://tabnine.com/install
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Completion Manager
 let g:deoplete#enable_at_startup = 1
-
 Plug 'Shougo/echodoc.vim'                                     " Echo method signatures to command window
 let g:echodoc_enable_at_startup=1
 let g:echodoc#type = 'signature'
@@ -22,5 +22,8 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': ['yarn', 'flow', 'lsp', '--from', './node_modules/.bin'],
     \ 'Dockerfile': ['docker-langserver', '--stdio'],
     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-    \ 'go': ['go-langserver', '-gocodecompletion']
     \ }
+
+" call deoplete#custom#option('profile', v:true)
+" call deoplete#enable_logging('DEBUG', 'deoplete.log')
+" \ 'go': ['go-langserver', '-gocodecompletion']

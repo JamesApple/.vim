@@ -7,7 +7,7 @@ let g:mapleader = "\<Space>"
 " Plugins may use python2/python3 independently.
 " These globals must point to their respective binaries.
 let g:python_host_prog =  '/usr/local/var/pyenv/versions/2.7.10/bin/python'
-let g:python3_host_prog = '/usr/local/var/pyenv/versions/3.5.0/bin/python'
+let g:python3_host_prog = '/usr/local/var/pyenv/versions/3.7.3/bin/python'
 
 " Immediately set up and install vim-plug and plugins if they don't exist
 if empty(glob('~/.vim/autoload/plug.vim'))

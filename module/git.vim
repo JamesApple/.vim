@@ -94,4 +94,3 @@ let g:Gitv_CustomMappings = {
       \'yank': 'yc'
       \}
 
-

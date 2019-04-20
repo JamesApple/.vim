@@ -1,7 +1,3 @@
-if exists('b:did_ftplugin')
-  finish
-endif
-
 " Mappings follow (e)xplorer <something> convention.
 " (e)xplorer create (f)ile
 " (e)xplorer (r)emove
