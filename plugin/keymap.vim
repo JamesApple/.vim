@@ -124,7 +124,7 @@ nnoremap <silent><leader>sh :History<CR> | " (s)earch (h)istory
 nnoremap <silent><leader>st :Rg<CR>      | " (s)earch (t)ext
 nnoremap <leader>sT :Rg                  | " (s)earch (T)ext with regex
 
-nnoremap <silent> <leader><leader> :Files '~/notes/'<CR>
+nnoremap <silent> <leader><leader> :Files ~/notes/<CR>
 
 " Get the current highlight group. Useful for then remapping the color
 map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
