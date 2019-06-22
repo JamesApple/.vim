@@ -5,7 +5,6 @@ Plug 'tpope/vim-abolish'
 Plug 'AndrewRadev/sideways.vim', { 'on': [ 'SidewaysRight', 'SidewaysLeft' ] } 
 Plug 'tpope/vim-surround'
 let g:surround_no_mappings = 1                                      " Surround default mappings are quite invasive
-Plug 'jiangmiao/auto-pairs'                                         " Auto add closing parens and brackets
 Plug 'Valloric/MatchTagAlways', { 'for': [ 'html', 'vue', 'jsx' ] } " Always highlight matching xml/html tags
 Plug 'tpope/vim-commentary'                                         " Comment with gc
 Plug 'tpope/vim-endwise'                                            " Add end after ruby
@@ -25,4 +24,3 @@ Plug 'tpope/vim-bundler', { 'for': ['ruby'] }                       " Ruby gems 
 Plug 'tpope/vim-sleuth'                                             " Never touch indent settings
 Plug 'tpope/vim-apathy'                                             " Path shenanigans
 Plug 'tpope/vim-scriptease', { 'for': ['vim'] }                     " Vim editing superpowers
-Plug 'machakann/vim-highlightedyank'

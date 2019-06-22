@@ -21,6 +21,7 @@ let g:ale_fixers = {
       \   'vue': ['prettier'],
       \   'json': ['prettier'],
       \   'scss': ['stylelint'],
-      \   'typescript': ['prettier', 'tslint'],
-      \   'go': ['gofmt', 'goimports']
+      \   'typescript': ['prettier', 'tslint', 'eslint'],
+      \   'go': ['gofmt', 'goimports'],
+      \   'terraform': ['terraform']
       \}

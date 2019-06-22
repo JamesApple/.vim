@@ -8,6 +8,7 @@ let g:mapleader = "\<Space>"
 " These globals must point to their respective binaries.
 let g:python_host_prog =  '/usr/local/var/pyenv/versions/2.7.10/bin/python'
 let g:python3_host_prog = '/usr/local/var/pyenv/versions/3.7.3/bin/python'
+let g:node_host_prog = expand('~/.nvm/versions/node/v10.15.3/bin/neovim-node-host')
 
 " Immediately set up and install vim-plug and plugins if they don't exist
 if empty(glob('~/.vim/autoload/plug.vim'))

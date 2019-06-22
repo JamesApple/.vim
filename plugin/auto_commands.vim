@@ -19,7 +19,7 @@ augroup FTDetects
     au BufRead,BufNewFile Procfile setfiletype yaml
     au BufRead,BufNewFile .env.override setfiletype sh
     au BufRead,BufNewFile .env.example setfiletype sh
-    au BufRead,BufNewFile .envrc setfiletype sh
+    au BufRead,BufNewFile .envrc setfiletype sh.envrc
     au BufRead,BufNewFile *.log setfiletype log
     " These are for my own configuration management system
     au BufRead,BufNewFile *input/.gitconfig/* setfiletype gitconfig

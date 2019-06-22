@@ -1,0 +1,38 @@
+snippet it "It test block" b
+it('$1', () => {
+	${0:${VISUAL}}
+})
+endsnippet
+
+snippet describe "Describe test block" b
+describe('$1', () => {
+	${0:${VISUAL}}
+})
+endsnippet
+
+snippet contect "Context test block" b
+context('$1', () => {
+	${0:${VISUAL}}
+})
+endsnippet
+
+snippet expect "Expectation test" b
+expect($1)$2
+endsnippet
+
+snippet import "ES6 Import" b
+import ${1:React} from '${2:$1}'
+endsnippet
+
+snippet fn "Inline Function" Aw
+($1) => { 
+	$0
+}
+endsnippet
+
+snippet sfc "Stateless Functional Component" b
+const ${1:Component} = (${2:props}) => {
+	const { $3 } = props
+	return (<${4:a} $5>$0</$4>)
+}
+endsnippet

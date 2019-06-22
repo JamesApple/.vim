@@ -1,29 +1,44 @@
-" https://tabnine.com/install
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Completion Manager
-let g:deoplete#enable_at_startup = 1
-Plug 'Shougo/echodoc.vim'                                     " Echo method signatures to command window
-let g:echodoc_enable_at_startup=1
-let g:echodoc#type = 'signature'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 
-Plug 'Shougo/neco-syntax'                                     " Completion from syntax file
-Plug 'Shougo/neco-vim',             { 'for': ['vim'] }        " Vim Source
+set nobackup
+set nowritebackup
 
-Plug 'ervandew/supertab'                                      " Make tab completion easier
-let g:SuperTabDefaultCompletionType = "<c-n>"                 " Default to complete down the list
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
 
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_autoStop = 0
-let g:LanguageClient_rootMarkers = ['.flowconfig']
-let g:LanguageClient_loggingLevel = 'INFO'
-let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['tcp://localhost:7658'],
-    \ 'javascript': ['yarn', 'flow', 'lsp', '--from', './node_modules/.bin'],
-    \ 'javascript.jsx': ['yarn', 'flow', 'lsp', '--from', './node_modules/.bin'],
-    \ 'Dockerfile': ['docker-langserver', '--stdio'],
-    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-    \ }
+" always show signcolumns
+set signcolumn=yes
+set shortmess+=c
 
-" call deoplete#custom#option('profile', v:true)
-" call deoplete#enable_logging('DEBUG', 'deoplete.log')
-" \ 'go': ['go-langserver', '-gocodecompletion']
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+nmap <leader>rn <Plug>(coc-rename)

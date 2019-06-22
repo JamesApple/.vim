@@ -1,0 +1,21 @@
+snippet it "Rpec it"
+it '$1' do
+	${0:${VISUAL}}
+end
+endsnippet
+
+snippet context "Rpec context"
+context '$1' do
+	${0:${VISUAL}}
+end
+endsnippet
+
+snippet describe "Rpec describe"
+describe '$1' do
+	${0:${VISUAL}}
+end
+endsnippet
+
+snippet let "Rspec let" b
+let(:${1:${VISUAL}}) { ${2:Fabricate(:${3:$1})} }$0
+endsnippet

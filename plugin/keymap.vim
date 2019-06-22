@@ -11,10 +11,6 @@ xnoremap <leader>r y:'{,'}Subvert/<c-r><c-0>//g<left><left>
 
 nmap <leader>u :UndotreeToggle<CR>
 
-" Replace in entire file
-nnoremap <leader>R :%Subvert/<c-r><c-w>//g<left><left>
-xnoremap <leader>R y:%Subvert/<c-r><c-0>//g<left><left>
-
 vnoremap <silent><leader>p :CarbonNowSh<CR>
 
 vnoremap <silent> ; :EasyAlign<cr>
@@ -107,8 +103,6 @@ nnoremap g< :SidewaysLeft<CR>
 nnoremap g> :SidewaysRight<CR>
 
 nnoremap <silent><leader>f :ALEFix<CR>
-nnoremap ]] :ALENext<CR>|
-nnoremap [[ :ALELast<CR>|
 
 nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tF :TestFile<CR>

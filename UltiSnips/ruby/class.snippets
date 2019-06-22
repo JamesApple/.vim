@@ -1,0 +1,65 @@
+global !p
+def classname_for_file():
+	try:
+		return ''.join(x.capitalize() or '_' for x in snip.basename.split('_'))
+	except:
+		return "ERR"
+
+def classname_for_spec():
+	try:
+		return classname_for_file().replace('Spec', '')
+	except:
+		return "ERR"
+
+def args_from_arg_string(arg_string):
+	try:
+		args = list(map(lambda s: s.strip(), arg_string.replace(':', '').split(',')))
+		if args[0]:
+			return args
+		else:
+			return []
+	except:
+		return []
+
+def instance_assignments_from_arg_string(arg_string):
+	try:
+		return list(map(lambda a: '@' + a + ' = ' + a, args_from_arg_string(arg_string)))
+	except:
+		return "ERR"
+
+def symbols_from_arg_string(arg_string):
+	try:
+		return list(map(lambda a: ':' + a , args_from_arg_string(arg_string)))
+	except:
+		return "ERR"
+endglobal
+
+snippet class "Class" b
+class ${1:`!p snip.rv = classname_for_file()`}$2
+	${0:${VISUAL}}
+end
+endsnippet
+
+snippet module "Module" b
+module ${1:`!p snip.rv = classname_for_file()`}
+	${0:${VISUAL}}
+end
+endsnippet
+
+snippet interactor "Interactor" b
+module ${1:`!p snip.rv = classname_for_file()`}
+	${2:include Helpers::ValidatableInteractor}
+	${0:${VISUAL}}
+end
+endsnippet
+
+snippet init "Initialize Method" b
+${2:attr_${3:reader} `!p snip.rv = ', '.join(symbols_from_arg_string(t[1]))`}
+
+def initialize(${1:vars})`!p 
+snip >> 2
+for assignment in instance_assignments_from_arg_string(t[1]): snip += assignment`$4
+end$0
+endsnippet
+
+

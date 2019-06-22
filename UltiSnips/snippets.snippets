@@ -1,0 +1,209 @@
+# Snippets can use the Echo() method defined in vimrc/Snippets.vim =
+# `!v Echo('Persistent')`
+# We use a little hack so that the snippet is expanded
+# and parsed correctly
+
+
+# Snippet adding
+
+# filename       filetype
+# ruby.snippets  ruby
+# perl.snippets  perl
+# c.snippets     c
+# c_my.snippets  c
+# c/a            c
+# c/b.snippets   c
+# all.snippets   *all
+# all/a.snippets *all
+
+# Snippet names can include spaces but must be quoted ""
+
+# Snippet tag explanation:
+# b  Only expanded at (b)eginning of line
+#
+# !  Overwrite all other snippets of this name instead of sharing completion
+#
+# i  Expanding (i)nside any word
+#
+# w  Can only be expanded if start and end of trigger are word boundaries
+#    Use this option, for example, to permit expansion where the tab trigger 
+#    follows punctuation without expanding suffixes of larger words.
+#
+# r  Trigger must be python regular expression. Can be used to create multiline
+#    snippets. Note: The regular expression MUST be quoted
+#
+# t  Do not smart expand tabs
+
+# Special characters can be escaped with \
+
+# $0 is always the last tabstop no matter what
+# Tabstops can be nested as ${1:https://${2:google.com}}
+# ${1:regex/replacement/options}
+# The options are:
+# g  ( G )lobal. By default only the first found result is replaced.
+# i  Case ( i )nsensitive
+#
+# The replacement string cannot contain tabstops. In this expression $0 actually refers
+# to the regexs selected text
+# \u   - Uppercase next letter;
+# \l   - Lowercase next letter
+# \U   - Uppercase everything till the next \E
+# \L   - Lowercase everything till the next \E
+# \E   - End upper or lowercase started with \L or \U
+# \n   - A newline
+# \t   - A literal tab
+# Finally, the replacement string can contain conditional replacements using the
+# syntax (?no:text:other text). This reads as follows: if the group $no has
+# matched, insert "text", otherwise insert "other text". "other text" is
+# optional and if not provided defaults to the empty string, "". This feature
+# is very powerful. It allows you to add optional text into snippets.
+# Replacement examples
+#
+# Uppercase first character:
+# ${1:a text}
+# ${1/\w+\s*/\u$0/}
+#
+# Uppercase firsth character of all words
+# ${1:a text}
+# ${1/\w+\s*/\u$0/g}
+#
+# Only shows the second stop if there is a % in the first tabstop
+# snippet printf
+# printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+# endsnippet
+
+
+# Visual selections or replacements
+# ${VISUAL} 
+# ${VISUAL: Default text} 
+# ${VISUAL:default text/search/replace/options} 
+# ${VISUAL:inside text/should/is/g}</tag>
+
+# Code interpolation:
+# Code can be run by wrapping it in unescaped backticks ``
+# The backtick surrounded region is then replaced with the evaluated code
+
+# Generic shell command:
+# Today is the `date +%d.%m.%y`.
+
+# Using any utility to insert (Perl):
+# Today is `#!/usr/bin/perl
+# @a = localtime(); print $a[3] . '.' . $a[4] . '.' . ($a[5]+1900);`.
+
+# Use Viml to interpolate with `!v code`
+# `!v MyFunction('')`
+
+# Python interpolation is the only one with contextual access `!p code`
+# `!p snip.rv = (75-2*len(t[1]))*' '+t[1].upper()`
+
+# Python interpolation provides access to some default objects
+# fn:   Current filename => snippets.snippets
+#
+# path: Complete path => /Users/jamesapple/configurator/snippets/snippets.snippets
+#
+# t:    Placeholders as an array(?) (t[1] == ${1})
+#       Any changes to a placeholder referenced in a python script is recomputed
+#       on any change
+#       => <UltiSnips.text_objects._python_code._Tabs object at 0x10cd78d68>
+#
+
+# snip: Provides many helpers. Indentation related helpers are not described here
+# Methods::
+#
+#  snip.opt('g:AutoPairsLoaded', 'None') => Either the vim variable referenced or the default on the right
+#
+# Properties::
+#  snip.rv => 
+#  The text that will replace the python block. If this is not set nothing will
+#  be returned
+#
+#  snip.c => 
+#  Can only be used to check if snip.c is != "" to make sure that the
+#  interpolation is only done once
+#
+# snip.v =>
+#   Data about the ${VISUAL}. 
+#   snip.v.mode => 'v' | 'V' | '^V'
+#   snip.v.text =>  Contents of selection as String
+#
+# snip.basename =>
+#   Filename without extension
+# 
+#  snip.ft =>
+#    Filetype as string
+#
+#    snip += line =>
+#        Equivalent to "snip.rv += '\n' + snip.mkline(line)"
+#
+# match =>
+#  Match has access to data matched from a snippet that uses a regular expression
+
+
+# REUSABLE FUNCTION EXAMPLE:
+# global !p
+# def upper_right(inp):
+#     return (75 - 2 * len(inp))*' ' + inp.upper()
+# endglobal
+#
+# snippet wow
+# ${1:Text}`!p snip.rv = upper_right(t[1])`
+# endsnippet
+
+
+# REGEX EXAMPLE:
+# This snippet works for `be` `begin someting` `beg`
+#
+# snippet "be(gin)?( (\S+))?" "begin{} / end{}" br
+# begin{${1:`!p
+# snip.rv = match.group(3) if match.group(2) is not None else "something"`}}
+#     ${2:${VISUAL}}
+# end{$1}$0
+# endsnippet
+
+# PYTHON EXAMPLE:
+# # Global block gives access to the contained scope
+# global !p
+# def fraction(a, b):
+#     try:
+#         return "%.1f" % (float(a)/float(b))
+#     except (ValueError, ZeroDivisionError):
+#         return "ERR"
+# endglobal
+
+# snippet 75wrds "Log a 750words.com session" b
+# 750words.com: ${1:750} words in ${2:20} minutes - `!p
+# snip.rv = fraction(t[1], t[2])
+# ` wpm.
+# endsnippet
+
+
+# {{{ Snippet Snippets
+snippet snip "Ultisnips snippet definition" b
+`!p snip.rv = "snippet"` ${1:Tab_trigger} "${2:Description}" ${3:b}
+${0:${VISUAL}}
+`!p snip.rv = "endsnippet"`
+endsnippet
+
+snippet global "Global snippet" b
+`!p snip.rv = "global"` !p
+${0:${VISUAL}}
+`!p snip.rv = "endglobal"`
+endsnippet
+
+snippet visual "Visual, smart indented snippet" b
+	\${0:\${VISUAL}}
+endsnippet
+
+
+# }}} Snippet Snippets
+
+
+snippet section "Section" b
+# {{{ ${1: Title}
+${0:${VISUAL}}
+# }}} $1
+endsnippet
+
+snippet echo "Echo a persistent message" b
+\`!v Echo('${1:Persistent Message}')\`
+endsnippet
