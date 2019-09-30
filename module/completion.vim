@@ -1,4 +1,4 @@
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 set nobackup
 set nowritebackup
@@ -25,6 +25,8 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+inoremap <silent><expr> <C-r> coc#refresh()
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

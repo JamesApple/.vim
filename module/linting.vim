@@ -11,7 +11,7 @@ let g:ale_statusline_format = ['X %d', '? %d', '']
 let g:ale_echo_msg_format = 'ALE:%linter% %s'
 
 let g:ale_linters = {
-      \ 'javascript': ['flow', 'eslint'],
+      \ 'javascript': ['eslint'],
       \   'markdown': ['proselint', 'write-good', 'mdl']
       \}
 

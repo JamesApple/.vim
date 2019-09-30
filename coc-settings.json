@@ -22,7 +22,7 @@
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
     "http://json.schemastore.org/ansible-stable-2.5": "ansibl*/**/*.y*l",
-    "kubernetes": "kube/**/*.yaml",
+    "kubernetes": ["kub*.y*l", "kub*/**/*.y*ml", "kub*/*.y*ml"],
     "http://json.schemastore.org/package": "package.json"
   },
 
@@ -34,7 +34,6 @@
   "typescript.suggestionActions.enabled": true,
   "typescript.suggest.enabled": true,
 
-
   "languageserver":  {
 
     "terraform": {
@@ -44,6 +43,7 @@
 
     "golang": {
       "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
     },
 

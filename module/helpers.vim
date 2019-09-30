@@ -16,8 +16,6 @@ Plug 'wellle/targets.vim'
 Plug 'google/vim-searchindex'                                       " Adds search numbers
 Plug 'editorconfig/editorconfig-vim'                                " Set indentation and etc based on project
 Plug 'AndrewRadev/splitjoin.vim'                                    " gJ gS to split and join expressions
-Plug 'djdt/pyparens.nvim',      { 'do': ':UpdateRemotePlugins' }    " Highlight the braces I'm currently inside
-let g:pyparens_hl_col_group = 'FoldColumn'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-rbenv', { 'for': ['ruby'] }                         " Ruby versioning
 Plug 'tpope/vim-bundler', { 'for': ['ruby'] }                       " Ruby gems helper
